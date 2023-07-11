@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+ import Expenses from "./Component/Expenses";
+ import NewExpense from "./Component/NewExpenses/NewExpense";
+ let DUMMY_EXPANSES = [
+    {id:1,
+    date : new Date(2023, 7, 11),
+    title : "school fee",
+    amount : 12000,
+},    {id:2,
+    date : new Date(2023, 7, 21),
+    title : "Tution fee",
+    amount : 12000,
+},
+{id:2,
+    date : new Date(2023, 7, 11),
+    title : "Football fee",
+    amount : 12000,
+}
+] 
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   
+    const [expenses,setexpenses] = useState(DUMMY_EXPANSES);
+
+    const NewExpenses = (Expensesdata) => {
+        setexpenses([...expenses,Expensesdata])
+        console.log(expenses);
+    }
+    return (
+        <div>
+            <NewExpense DataTrasnfer={NewExpenses} />
+            <Expenses item={expenses} />
+          </div> 
+    );
 }
 
 export default App;
